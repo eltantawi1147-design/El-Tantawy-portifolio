@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Youssef Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#050505;
+  --text:#fff;
+  --card:#111;
+  --accent:#7d5cff;
+}
+
+body.light{
+  --bg:#f5f5f5;
+  --text:#111;
+  --card:#fff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
+}
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 10%;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.3);
+  z-index:1000;
+}
+
+
+/* CENTER NAVBAR */
+.center-nav{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:35px;
+}
+
+.center-nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+  cursor:pointer;
+  position:relative;
+}
+
+.center-nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+  cursor:pointer;
+  display:inline-block;
+}
+
+.center-nav a:hover{
+  color:var(--accent);
+  transform:translateY(-5px) scale(1.08);
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:var(--accent);
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:120px 10%;
+  gap:50px;
+}
+
+.hero h1{
+  font-size:65px;
+}
+
+.hero span{
+  color:var(--accent);
+}
+
+.hero p{
+  color:gray;
+  margin:15px 0;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-20px)}
+  100%{transform:translateY(0)}
+}
+
+.hero img{
+  width:320px;
+  border-radius:25px;
+  animation:float 4s ease-in-out infinite;
+}
+
+.typing{
+  font-size:22px;
+  color:gray;
+  height:30px;
+  margin-top:10px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:15px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:12px 25px;
+  background:var(--accent);
+  color:#fff;
+  border-radius:10px;
+  text-decoration:none;
+  cursor:pointer;
+  display:inline-block;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+.section{
+  padding:80px 10%;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  transition:0.3s;
+  opacity:0;
+  transform:translateY(30px);
+  text-align:center;
+  font-size:18px;
+  text-decoration:none;
+color:var(--text);
+display:block;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card i{
+  font-size:28px;
+  margin-bottom:10px;
+  color:var(--accent);
+}
+
+
+.slider{
+  display:flex;
+  overflow-x:auto;
+  gap:20px;
+  scroll-snap-type:x mandatory;
+  margin-top:25px;
+}
+
+.slider img{
+  width:300px;
+  border-radius:15px;
+  scroll-snap-align:center;
+}
+
+.slider::-webkit-scrollbar{
+  height:8px;
+}
+
+.slider::-webkit-scrollbar-thumb{
+  background:var(--accent);
+  border-radius:20px;
+}
+
+@media(max-width:900px){
+
+.hero{
+  flex-direction:column;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:45px;
+}
+
+.hero-buttons{
+  justify-content:center;
+}
+
+.hero img{
+  width:250px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h3>El-Tantawy</h3>
+
+  <nav class="center-nav">
+<a onclick="scrollToHome()">Home</a>
+<a onclick="scrollToProjects()">Projects</a>
+<a onclick="scrollToContact()">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+
+    <h2>Hello</h2>
+
+    <h1>
+      Youssef <span>El-Tantawy</span>
+    </h1>
+
+    <div class="typing" id="typing"></div>
+
+    <!-- My Projects + Contact beside it -->
+    <div class="hero-buttons">
+      <a class="btn" onclick="scrollToProjects()">My Projects</a>
+      <a class="btn" onclick="scrollToProjects()">Contact</a>
+
+    </div>
+
+  </div>
+
+  <img src="logo.png">
+
+</section>
+
+<section class="section" id="projects">
+
+  <h2>Projects</h2>
+
+  <div class="slider">
+    <img src="img01.jpg" />
+    <img src="img02.jpg" />
+    <img src="img03.jpg" />
+  </div>
+
+</section>
+
+<section class="section" id="contact">
+
+  <h2>Contact & Links</h2>
+
+  <div class="cards">
+
+
+  
+    <!-- WhatsApp -->
+    <a href="https://wa.me/201144808267" target="_blank" class="card">
+      <i class="fa-brands fa-whatsapp"></i>
+      <br>
+      WhatsApp
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@el_tantawy_quran" target="_blank" class="card">
+      <i class="fa-brands fa-tiktok"></i>
+      <br>
+      TikTok
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/YOUR_USERNAME" target="_blank" class="card">
+      <i class="fa-brands fa-facebook"></i>
+      <br>
+      Facebook
+    </a>
+
+
+    <!-- GitHub -->
+    <a href="https://github.com/eltantawi1147-design" target="_blank" class="card">
+      <i class="fa-brands fa-github"></i>
+      <br>
+      GitHub
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/youssef-eltantawy/?skipRedirect=true" target="_blank" class="card">
+      <i class="fa-brands fa-linkedin"></i>
+      <br>
+      LinkedIn
+    </a>
+  
+    <!-- Email -->
+<a href="mailto:eltantawi1147@gmail.com" target="_blank" class="card">  
+      <i class="fa-solid fa-envelope"></i>
+      <br>
+      Email
+    </a>
+  </div>
+
+</section>
+
+<script>
+
+// typing effect
+const texts = [
+  "Graphic Designer",
+  "Video Editor",
+  "Creative Thinker"
+];
+
+let i = 0;
+let j = 0;
+let current = "";
+
+function type(){
+
+  current = texts[i];
+
+  document.getElementById("typing").innerHTML =
+  current.slice(0,j++);
+
+  if(j > current.length){
+    j = 0;
+    i = (i + 1) % texts.length;
+  }
+
+  setTimeout(type,200);
+}
+
+type();
+
+
+// scroll animation
+const cards = document.querySelectorAll('.card');
+
+const obs = new IntersectionObserver(entries => {
+
+  entries.forEach(e => {
+
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+    }
+
+  });
+
+});
+
+cards.forEach(c => obs.observe(c));
+
+// scroll to Home
+function scrollToHome(){
+
+  document.getElementById("home")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+// scroll to Projects
+function scrollToProjects(){
+
+  document.getElementById("projects")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+// scroll to Contact
+function scrollToContact(){
+
+  document.getElementById("contact")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
